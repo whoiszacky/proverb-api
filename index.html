@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="icon" type="image/svg+xml" href="/fav-icon.svg">
+    <title>Mahmaahyo</title>
+</head>
+<body data-bs-theme="light">
+    <!--this the theme toggle -->
+    <div class="form-check form-switch mx-4">
+        <input
+            class="form-check-input p-2"
+            type="checkbox"
+            role="switch"
+            id="flexSwitchCheckChecked"
+            data-bs-toggle="switch"
+            onclick="toggleTheme()"
+        />
+    </div>
+    <div class="px-4 py-5 my-5 text-center">
+        <svg class="d-block mx-auto mb-4" style="width: 140px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 80" x="0px" y="0px"><title>quote,text,iterate,cite</title><g data-name="Layer 2"><path d="M4,21h8a1,1,0,0,0,1-1V12a1,1,0,0,0-1-1H5V10A3,3,0,0,1,8,7,1,1,0,0,0,8,5a5,5,0,0,0-5,5V20A1,1,0,0,0,4,21Zm7-2H5V13h6Z"/><path d="M20,7a1,1,0,0,0,0-2,5,5,0,0,0-5,5V20a1,1,0,0,0,1,1h8a1,1,0,0,0,1-1V12a1,1,0,0,0-1-1H17V10A3,3,0,0,1,20,7Zm3,12H17V13h6Z"/><path d="M60,43H52a1,1,0,0,0-1,1v8a1,1,0,0,0,1,1h7v1a3,3,0,0,1-3,3,1,1,0,0,0,0,2,5,5,0,0,0,5-5V44A1,1,0,0,0,60,43Zm-7,2h6v6H53Z"/><path d="M48,43H40a1,1,0,0,0-1,1v8a1,1,0,0,0,1,1h7v1a3,3,0,0,1-3,3,1,1,0,0,0,0,2,5,5,0,0,0,5-5V44A1,1,0,0,0,48,43Zm-7,2h6v6H41Z"/><path d="M34,51H5V26a1,1,0,0,0-2,0V52a1,1,0,0,0,1,1H34a1,1,0,0,0,0-2Z"/><path d="M60,11H30a1,1,0,0,0,0,2H59V38a1,1,0,0,0,2,0V12A1,1,0,0,0,60,11Z"/><path d="M52,31H12a1,1,0,0,0,0,2H52a1,1,0,0,0,0-2Z"/><path d="M52,26H20a1,1,0,0,0,0,2H52a1,1,0,0,0,0-2Z"/><path d="M52,36H12a1,1,0,0,0,0,2H52a1,1,0,0,0,0-2Z"/></g>
+        </svg>
+        <h1 class="display-5 fw-bold text-body-emphasis mt-n5">Proverb.rest</h1>
+        <h6 class=".text-body-tertiary fst-italic" > A free REST API for random proverbs</h6>
+        <div class="col-lg-6 mx-auto">
+          <p class="lead mb-4 fst-italic">This API offers a single endpoint for accessing random proverbs. <br> To see how it works click Get proverb button  </p>
+          <p id="proverb" class="p-5 text-center bg-body-tertiary rounded-4"><samp></samp></p>
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <button type="button" id="getProverb" class="btn btn-primary btn-lg px-4 gap-3">Get Proverb</button>
+            <button type="button" class="btn btn-outline-secondary btn-lg px-4"><a href="/decumention.html" style="text-decoration:none">API Documentation</a></button>
+          </div>
+        </div>
+      </div>
+    <!-- Add this section to your existing HTML file 
+<section id="documentation">
+    <h2>API Documentation</h2>
+    <p>Welcome to the API documentation for the Random Proverb Generator API.</p>
+
+    <h3>Endpoints</h3>
+    <p>This API provides one endpoints for retrieving random proverbs.</p>
+
+    <h4>/json Endpoint</h4>
+    <p>Endpoint: <code>/json</code></p>
+    <p>Returns a random proverb in JSON format.</p>
+
+    <h3>Usage</h3>
+    <p>To retrieve a random proverb, you can make a GET request to either of the endpoints.</p>
+    <p>For example:</p>
+    <pre><code>GET /text - Retrieves a random proverb in plain text.-->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Retrieve the stored theme preference from local storage
+            var savedTheme = localStorage.getItem('bsTheme');
+
+            // If a theme is stored, apply it; otherwise, use the default theme
+            if (savedTheme) {
+                document.body.dataset.bsTheme = savedTheme;
+            } else {
+                // Set a default theme to 'light' if no theme is stored
+                document.body.dataset.bsTheme = 'light';
+            }
+
+            // Initialize the Bootstrap switch after setting the theme
+            var switchElement = new bootstrap.Switch(document.getElementById('flexSwitchCheckChecked'), {
+                state: document.body.dataset.bsTheme === 'dark'
+            });
+
+            // Ensure the toggle switch reflects the stored theme state
+            switchElement.state = document.body.dataset.bsTheme === 'dark';
+
+            // Attach the theme toggle function to the switch
+            document.getElementById('flexSwitchCheckChecked').addEventListener('click', toggleTheme);
+        });
+
+        // Function to toggle between light and dark themes
+        function toggleTheme() {
+            var element = document.body;
+            element.dataset.bsTheme = element.dataset.bsTheme === 'light' ? 'dark' : 'light';
+
+            // Update the state of the theme toggle switch
+            var switchElement = new bootstrap.Switch(document.getElementById('flexSwitchCheckChecked'));
+            switchElement.state = element.dataset.bsTheme === 'dark';
+
+            // Store the user's theme preference in local storage
+            localStorage.setItem('bsTheme', element.dataset.bsTheme);
+        }
+
+    document.addEventListener('DOMContentLoaded', () => {
+    const proverbElement = document.getElementById('proverb');
+    const getProverbButton = document.getElementById('getProverb');
+
+    getProverbButton.addEventListener('click', () => {
+        // Make a request to your Node.js server
+        fetch('http://localhost:3000/proverbs') // Replace with your server URL
+            .then((response) => response.json())
+            .then((data) => {
+                proverbElement.textContent = data.proverb;
+            })
+            .catch((error) => {
+                console.error('Error fetching proverb:', error);
+            });
+    });
+});
+
+    </script>
+</body>
+</html>
