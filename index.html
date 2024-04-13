@@ -29,7 +29,7 @@
           <p id="proverb" class="p-5 text-center bg-body-tertiary rounded-4"><samp></samp></p>
           <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
             <button type="button" id="getProverb" class="btn btn-primary btn-lg px-4 gap-3">Get Proverb</button>
-            <button type="button" class="btn btn-outline-secondary btn-lg px-4"><a href="/decumention.html" style="text-decoration:none">API Documentation</a></button>
+            <button type="button" class="btn btn-outline-secondary btn-lg px-4"><a href="/documentation.html" style="text-decoration:none">API Documentation</a></button>
           </div>
         </div>
       </div>
@@ -94,7 +94,7 @@
 
     getProverbButton.addEventListener('click', () => {
         // Make a request to your Node.js server
-        fetch('http://localhost:3000/proverbs') // Replace with your server URL
+        fetch('https://proverbs-api.onrender.com/proverbs') // Replace with your server URL
             .then((response) => response.json())
             .then((data) => {
                 proverbElement.textContent = data.proverb;
